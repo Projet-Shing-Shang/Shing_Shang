@@ -1,0 +1,20 @@
+# Variable
+int maSuperVariable;
+
+# Tableau
+int t_tableau[];
+
+# Fonction
+void maSuperFonction;;
+
+# Constante
+int c_maConstante;
+
+# Constante define
+MON_DEFINE
+
+# Pointeur
+int * p_monSuperPointeur;
+
+# Structure 
+Jeu monSuperJeu;
