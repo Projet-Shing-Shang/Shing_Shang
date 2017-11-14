@@ -8,7 +8,7 @@
 #include <utilitaire.h>
 #include <pion.h>
 #include <plateau.h>
-
+#include <ligne.h>
 void initialisation();
 
 #endif

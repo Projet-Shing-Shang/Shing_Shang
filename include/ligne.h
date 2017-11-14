@@ -10,6 +10,4 @@ struct Ligne
   CasePlateau t_case[TAILLE_PLATEAU];
 };
 
-void initialisation_Ligne(ligne *ligne);
-
 #endif

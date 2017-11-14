@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ligne.h>
+#include <utilitaire.h>
 
 typedef struct Plateau Plateau;
 struct Plateau
@@ -13,6 +14,7 @@ struct Plateau
 };
 
 void initialisation_Plateau(Plateau *plateau);
-void affichage_plateau(Plateau **plateau);
+void initialisation_Ligne(Plateau *plateau, Ligne ligne,int type);
+void affichage_plateau(Plateau *plateau);
 
 #endif
