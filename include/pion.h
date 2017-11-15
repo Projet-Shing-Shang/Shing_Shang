@@ -3,12 +3,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef enum Type_pion Type_pion;
+enum Type_pion
+{
+  A/*AUCUN*/,S/*SINGE*/,L/*LION*/,D/*DRAGON*/
+};
+
 typedef struct Pion Pion;
 struct Pion
 {
-  int type; // 1 singe 2 lion 3 dragon
+  Type_pion type; // S singe; L lion; D dragon
   int joueur;
-  int p_case_plateau;
+  int * p_case_plateau; // pointeur vers la case du plateau
 };
 
 #endif

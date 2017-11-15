@@ -10,6 +10,7 @@ void initialisation_Plateau(Plateau *plateau)
         plateau->t_casePlateau[i][j].x = j;
         plateau->t_casePlateau[i][j].y = i;
         plateau->t_casePlateau[i][j].type = 0;
+        plateau->t_casePlateau[i][j].p_pion = NULL;
         if((j == 0 || j == 9)&&( i != 4 && i != 5))
         plateau->t_casePlateau[i][j].type = -1 ;
       }
@@ -37,13 +38,20 @@ void initialisation_Plateau(Plateau *plateau)
           }
           else
           {
-            if (plateau -> t_casePlateau[i][j].type == 0)
+            if (plateau -> t_casePlateau[i][j].p_pion == NULL)
             {
-              printf("|  ");
+              if (plateau -> t_casePlateau[i][j].type == 0)
+              {
+                printf("|  ");
+              }
+              else
+              {
+                printf("| %d",plateau -> t_casePlateau[i][j].type);
+              }
             }
             else
             {
-              printf("| %d",plateau -> t_casePlateau[i][j].type);
+              printf("| %c",plateau -> t_casePlateau[i][j].p_pion->type);
             }
           }
       }
