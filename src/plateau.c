@@ -1,25 +1,23 @@
 #include <plateau.h>
 
-void initialisation_Ligne(Plateau *plateau, Ligne ligne,int num_ligne)
-{
-    plateau -> t_lignePlateau[num_ligne] = ligne;
-}
-
 void initialisation_Plateau(Plateau *plateau)
   {
     int i,j;
-    Ligne ligne;
     for(i=0;i<10;i++)
     {
-      initialisation_Ligne(plateau,ligne,i);
       for(j=0;j<10;j++)
       {
-        if((i != 5 && i != 4)&&(j == 8))break;
-        plateau->t_lignePlateau[i].t_case[j].x = j;
-        plateau->t_lignePlateau[i].t_case[j].y = i;
-
+        plateau->t_casePlateau[i][j].x = j;
+        plateau->t_casePlateau[i][j].y = i;
+        plateau->t_casePlateau[i][j].type = 0;
+        if((j == 0 || j == 9)&&( i != 4 && i != 5))
+        plateau->t_casePlateau[i][j].type = -1 ;
       }
     }
+    plateau->t_casePlateau[1][4].type = 1;
+    plateau->t_casePlateau[1][5].type = 1;
+    plateau->t_casePlateau[8][4].type = 2;
+    plateau->t_casePlateau[8][5].type = 2;
   }
 
 
@@ -31,20 +29,28 @@ void initialisation_Plateau(Plateau *plateau)
     int i,j;
     for(i=0;i<10;i++)
     {
-      if(i != 5 && i != 4)
-      {
-        printf("       ");
-      }
       for(j=0;j<10;j++)
       {
-        if((i != 5 && i != 4)&&(j == 8))break;
-          printf("| %d",plateau -> t_lignePlateau[i].t_case[j].x);
-          printf(":%d ",plateau -> t_lignePlateau[i].t_case[j].y);
+          if(plateau -> t_casePlateau[i][j].type == -1)
+          {
+            printf("  ");
+          }
+          else
+          {
+            if (plateau -> t_casePlateau[i][j].type == 0)
+            {
+              printf("|  ");
+            }
+            else
+            {
+              printf("| %d",plateau -> t_casePlateau[i][j].type);
+            }
+          }
       }
     if(i != 3 && i != 4 && i != 5)
     {
-      printf("|\n       -------------------------------------------------\n" );
+      printf("|\n  ---------------------------\n" );
     }
-    else printf("|\n-------------------------------------------------------------\n");
+    else printf("|\n-------------------------------\n");
     }
   }

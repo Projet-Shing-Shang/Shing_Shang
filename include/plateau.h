@@ -4,17 +4,16 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <ligne.h>
+#include <case_plateau.h>
 #include <utilitaire.h>
 
 typedef struct Plateau Plateau;
 struct Plateau
 {
-  Ligne t_lignePlateau[TAILLE_PLATEAU];
+  CasePlateau t_casePlateau[TAILLE_PLATEAU][TAILLE_PLATEAU];
 };
 
 void initialisation_Plateau(Plateau *plateau);
-void initialisation_Ligne(Plateau *plateau, Ligne ligne,int type);
 void affichage_plateau(Plateau *plateau);
 
 #endif
