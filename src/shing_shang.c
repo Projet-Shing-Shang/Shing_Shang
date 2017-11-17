@@ -8,6 +8,7 @@ void initialisation()
   initialisation_Joueur(&j2,2);
   Plateau plateau;
   initialisation_Plateau(&plateau);
+  initialisation_pion(&j1,&plateau);
   affichage_plateau(&plateau);
-  
+
 }

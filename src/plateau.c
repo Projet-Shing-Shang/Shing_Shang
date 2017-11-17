@@ -28,6 +28,7 @@ void initialisation_Plateau(Plateau *plateau)
   {
     clear_console();
     int i,j;
+    printf("  ---------------------------\n" );
     for(i=0;i<10;i++)
     {
       for(j=0;j<10;j++)
