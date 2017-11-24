@@ -15,5 +15,7 @@ struct Plateau
 
 void initialisation_Plateau(Plateau *plateau);
 void affichage_plateau(Plateau *plateau);
+int droit_deplacement(Pion * pion, Plateau*plateau,int x, int y);
+
 
 #endif

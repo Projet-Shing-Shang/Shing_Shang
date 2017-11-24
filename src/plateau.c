@@ -28,7 +28,6 @@ void initialisation_Plateau(Plateau *plateau)
   {
     clear_console();
     int i,j;
-    printf("  ---------------------------\n" );
     for(i=0;i<10;i++)
     {
       for(j=0;j<10;j++)
@@ -52,7 +51,7 @@ void initialisation_Plateau(Plateau *plateau)
             }
             else
             {
-              printf("| %c",plateau -> t_casePlateau[i][j].p_pion->type);
+              printf("| %u",plateau -> t_casePlateau[i][j].p_pion->type);
             }
           }
       }
@@ -63,3 +62,12 @@ void initialisation_Plateau(Plateau *plateau)
     else printf("|\n-------------------------------\n");
     }
   }
+
+  /*int droit_deplacement(Pion * pion, Plateau*plateau,int x, int y)
+  {
+    int valide = 1;
+    if (valide == 1 && plateau[y][x].type == -1)valide = 0; //si la case est hors plateau
+    if (valide == 1 && plateau[y][x].p_pion != NULL) //si la case est prise
+
+    return valide;
+  }*/

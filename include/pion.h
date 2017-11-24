@@ -18,5 +18,6 @@ struct Pion
   int y;
 };
 
+void affichage_pion(Pion * pion);
 
 #endif

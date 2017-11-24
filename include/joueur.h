@@ -17,5 +17,8 @@ struct Joueur
 
 void initialisation_Joueur(Joueur *j1,int a);
 void initialisation_pion ( Joueur *joueur,Plateau *plateau);
+void affichage_pion_joueur(Joueur * joueur);
+void chois_pion(Joueur * joueur, Plateau * plateau);
+void prevision_deplacement_pion(Pion * pion, Plateau * plateau);
 
 #endif
