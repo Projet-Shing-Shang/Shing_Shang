@@ -37,7 +37,7 @@ void chois_pion(Joueur * joueur, Plateau * plateau)
   int x,y;
   printf("\n\n joueur %d quel piond voulez vous déplacer? ", joueur->num_joueur);
   printf("x ?\n");scanf("%d",&x);
-  printf("y ?\n");scanf("%d",&x);
+  printf("y ?\n");scanf("%d",&y);
   if(plateau->t_casePlateau[y][x].p_pion == NULL)
     {
       printf("cette case est vide \n sélectionez en une autre");
@@ -48,7 +48,8 @@ void chois_pion(Joueur * joueur, Plateau * plateau)
     if (plateau->t_casePlateau[y][x].p_pion->joueur == joueur ->num_joueur)
     {
       affichage_pion(plateau->t_casePlateau[y][x].p_pion);
-      //prevision_deplacement_pion(plateau->t_casePlateau[y][x].p_pion,plateau);
+
+      prevision_deplacement_pion(plateau->t_casePlateau[y][x].p_pion,plateau);
     }
     else
     {
@@ -59,33 +60,37 @@ void chois_pion(Joueur * joueur, Plateau * plateau)
 }
 
 //passer le tableau en dinamique
-/*void prevision_deplacement_pion(Pion * pion, Plateau * plateau)
+void prevision_deplacement_pion(Pion * pion, Plateau * plateau)
 {
-  CasePlateau *p_t_possibilitees = NULL;
-  p_t_possibilitees = malloc(sizeof(CasePlateau)*1);
-  int i,j;
+  int i,j,nb_en_fonction_pion;
+  if (pion->type != 1) nb_en_fonction_pion = 1;
+  else { nb_en_fonction_pion = 2;}
+  CasePlateau t_possibilitees[8*nb_en_fonction_pion];
   int cpt = 0;
-  for(i=-1;i<2;i++)
+  for(i=0-nb_en_fonction_pion ;i<1+nb_en_fonction_pion;i++)
   {
-    for(j=-1;j<2;j++)
+    for(j=0-nb_en_fonction_pion;j<1+nb_en_fonction_pion;j++)
     {
-      if((plateau -> t_casePlateau[pion->y+i][pion->x+j].p_pion == NULL)&&((plateau -> t_casePlateau[pion->y+i][pion->x+j].type == 0)||((plateau -> t_casePlateau[pion->y+i][pion->x+j].type > 0)&&(pion->type == 3))))//si la case n a pas de pion et que son type est de base ou que c est une porte mais que le pion est un dragon
+      //if((plateau -> t_casePlateau[pion->y+i][pion->x+j].p_pion == NULL)&&((plateau -> t_casePlateau[pion->y+i][pion->x+j].type == 0)||((plateau -> t_casePlateau[pion->y+i][pion->x+j].type > 0)&&(pion->type == 3))))//si la case n a pas de pion et que son type est de base ou que c est une porte mais que le pion est un dragon
+      if(droit_deplacement(pion, plateau, pion->x+i, pion->y+j))
       {
-        p_t_possibilitees = realloc(p_t_possibilitees, sizeof(CasePlateau) * (cpt+1));
-        p_t_possibilitees[cpt].x = pion->x+j;
-        p_t_possibilitees[cpt].y = pion->y+i;
-        cpt++;
-        printf("yohoy|");
+        //if(i && )
+        //{
+          t_possibilitees[cpt].x = pion->x+j;
+          t_possibilitees[cpt].y = pion->y+i;
+          cpt++;
+        //}
       }
     }
   }
   printf("vous pouvez déplacer ce pion en : \n");
-  for(i=0;i<sizeof(*p_t_possibilitees)/sizeof(CasePlateau);i++)
+  if(cpt == 0)
+    printf("pas de possibilitée de mouvement");
+  for(i=0;i<cpt;i++)
   {
-    printf(" x = %d  | y = %d \n",p_t_possibilitees[i].x,p_t_possibilitees[i].y);
+    printf(" x = %d  | y = %d \n",t_possibilitees[i].x,t_possibilitees[i].y);
   }
-  free(p_t_possibilitees);
-}*/
+}
 
 void affichage_pion_joueur(Joueur * joueur)
 {

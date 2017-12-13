@@ -34,7 +34,7 @@ void initialisation_Plateau(Plateau *plateau)
       {
           if(plateau -> t_casePlateau[i][j].type == -1)
           {
-            printf("  ");
+            printf("   ");
           }
           else
           {
@@ -57,17 +57,25 @@ void initialisation_Plateau(Plateau *plateau)
       }
     if(i != 3 && i != 4 && i != 5)
     {
-      printf("|\n  ---------------------------\n" );
+      printf("|\n   ---------------------------\n" );
     }
     else printf("|\n-------------------------------\n");
     }
   }
 
-  /*int droit_deplacement(Pion * pion, Plateau*plateau,int x, int y)
+  int droit_deplacement(Pion * pion, Plateau * plateau,int x, int y)
   {
     int valide = 1;
-    if (valide == 1 && plateau[y][x].type == -1)valide = 0; //si la case est hors plateau
-    if (valide == 1 && plateau[y][x].p_pion != NULL) //si la case est prise
-
+    if ((valide == 1 && plateau->t_casePlateau[y][x].type == -1)|| x<0 || y<0)valide = 0; //si la case est hors plateau
+    if (valide == 1 && plateau->t_casePlateau[y][x].type > 0 && pion->type != 3)valide = 0 ;// si c est une porte et que l on a pas un dragon
+    if (valide == 1 && plateau->t_casePlateau[y][x].p_pion != NULL) //si la case est prise
+    {
+        if(plateau->t_casePlateau[y+(y-pion->y)][x+(x-pion->x)].p_pion != NULL) valide = 0;//et que la case d apre est occupée
+        else
+        {
+          if(plateau->t_casePlateau[y][x].p_pion->type > pion->type) valide = 0; //si le pion est plus grand on ne peut pas sautter
+          else if (plateau->t_casePlateau[y+(y-pion->y)][x+(x-pion->x)].type > 0 && pion->type != 3) valide = 0; //si la case d arrivée et une porte et que l on a pas un dragon
+        }
+    }
     return valide;
-  }*/
+  }
