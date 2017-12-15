@@ -22,46 +22,67 @@ void initialisation_Plateau(Plateau *plateau)
   }
 
 
+void afficher_ligne(Plateau * plateau, int nligne)
+{
+  int x;
+  printf("%d|  ",nligne);
+  for (x=0;x<10;x++)
+  {
+    afficher_case(plateau,x,nligne);
+  }
+  if(nligne != 3 && nligne != 4 && nligne != 5)
+  {
+    printf("|\n       -------------------------\n" );
+  }
+  else printf("|\n    ------------------------------\n");
+
+}
+
+void afficher_case(Plateau * plateau, int x, int y)
+{
+  if(plateau -> t_casePlateau[y][x].type == -1)
+  {
+    if(x == 0)
+    printf("   ");
+    else
+    printf("");
+  }
+  else
+  {
+    if (plateau -> t_casePlateau[y][x].p_pion == NULL)
+    {
+      if (plateau -> t_casePlateau[y][x].type == 0)
+      {
+        printf("|  ");
+      }
+      else
+      {
+        printf("| %d",plateau -> t_casePlateau[y][x].type);
+      }
+    }
+    else
+    {
+      printf("| %u",plateau -> t_casePlateau[y][x].p_pion->type);
+    }
+  }
+}
 
 
+//deffinir en plusieures fonctions
   void affichage_plateau(Plateau *plateau)
   {
     clear_console();
-    int i,j;
+    int i;
+    printf("   | 0| 1| 2| 3| 4| 5| 6| 7| 8| 9");
+    printf("|\n       -------------------------\n" );
     for(i=0;i<10;i++)
     {
-      for(j=0;j<10;j++)
-      {
-          if(plateau -> t_casePlateau[i][j].type == -1)
-          {
-            printf("   ");
-          }
-          else
-          {
-            if (plateau -> t_casePlateau[i][j].p_pion == NULL)
-            {
-              if (plateau -> t_casePlateau[i][j].type == 0)
-              {
-                printf("|  ");
-              }
-              else
-              {
-                printf("| %d",plateau -> t_casePlateau[i][j].type);
-              }
-            }
-            else
-            {
-              printf("| %u",plateau -> t_casePlateau[i][j].p_pion->type);
-            }
-          }
-      }
-    if(i != 3 && i != 4 && i != 5)
-    {
-      printf("|\n   ---------------------------\n" );
-    }
-    else printf("|\n-------------------------------\n");
+      afficher_ligne(plateau,i);
     }
   }
+
+
+
 
   int droit_deplacement(Pion * pion, Plateau * plateau,int x, int y)
   {
