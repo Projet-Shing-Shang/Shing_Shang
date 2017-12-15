@@ -44,8 +44,8 @@ void afficher_case(Plateau * plateau, int x, int y)
   {
     if(x == 0)
     printf("   ");
-    else
-    printf("");
+    // else
+    // printf("");
   }
   else
   {
