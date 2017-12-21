@@ -63,34 +63,54 @@ void chois_pion(Joueur * joueur, Plateau * plateau)
 void prevision_deplacement_pion(Pion * pion, Plateau * plateau)
 {
   int i,j,nb_en_fonction_pion;
-  if (pion->type != 1) nb_en_fonction_pion = 1;
-  else { nb_en_fonction_pion = 2;}
-  CasePlateau t_possibilitees[8*nb_en_fonction_pion];
+
+  CasePlateau t_possibilitees[8];
   int cpt = 0;
-  for(i=0-nb_en_fonction_pion ;i<1+nb_en_fonction_pion;i++)
+  for(i=-1 ;i<2;i++)
   {
-    for(j=0-nb_en_fonction_pion;j<1+nb_en_fonction_pion;j++)
+    for(j=-1;j<2;j++)
     {
       //if((plateau -> t_casePlateau[pion->y+i][pion->x+j].p_pion == NULL)&&((plateau -> t_casePlateau[pion->y+i][pion->x+j].type == 0)||((plateau -> t_casePlateau[pion->y+i][pion->x+j].type > 0)&&(pion->type == 3))))//si la case n a pas de pion et que son type est de base ou que c est une porte mais que le pion est un dragon
-      if(droit_deplacement(pion, plateau, pion->x+i, pion->y+j))
+      if(droit_deplacement(pion, plateau, pion->x+j, pion->y+i))
       {
-        //if(i && )
-        //{
           t_possibilitees[cpt].x = pion->x+j;
           t_possibilitees[cpt].y = pion->y+i;
+          if(plateau->t_casePlateau[pion->y+i][pion->x+j].p_pion != NULL)
+          {
+            printf("il y a un saut");
+            t_possibilitees[cpt].x = pion->x+(j*2);
+            printf("  x : %d",pion->x+(j*2));
+            t_possibilitees[cpt].y = pion->y+(i*2);
+            printf("  y : %d \n",pion->y+(i*2));
+          }
           cpt++;
-        //}
+          if(pion->type == 1)
+          {
+            if(droit_deplacement(pion, plateau,pion->x+(j*2),pion->y+(i*2)))
+            {
+              printf("déplacement singe de deux cases");
+              t_possibilitees[cpt].x = pion->x+(j*2);
+              printf("  x : %d",pion->x+(j*2));
+              t_possibilitees[cpt].y = pion->y+(i*2);
+              printf("  y : %d \n",pion->y+(i*2));
+              cpt++;
+            }
+          }
       }
     }
   }
   printf("vous pouvez déplacer ce pion en : \n");
   if(cpt == 0)
+  {
     printf("pas de possibilitée de mouvement");
+  }
   for(i=0;i<cpt;i++)
   {
     printf(" x = %d  | y = %d \n",t_possibilitees[i].x,t_possibilitees[i].y);
   }
 }
+
+
 
 void affichage_pion_joueur(Joueur * joueur)
 {
