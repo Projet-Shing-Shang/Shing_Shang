@@ -49,7 +49,7 @@ void chois_pion(Joueur * joueur, Plateau * plateau)
     {
       affichage_pion(plateau->t_casePlateau[y][x].p_pion);
 
-      prevision_deplacement_pion(plateau->t_casePlateau[y][x].p_pion,plateau);
+      prevision_deplacement_pion(plateau->t_casePlateau[y][x].p_pion,plateau, joueur);
     }
     else
     {
@@ -59,10 +59,10 @@ void chois_pion(Joueur * joueur, Plateau * plateau)
   }
 }
 
-//passer le tableau en dinamique
-void prevision_deplacement_pion(Pion * pion, Plateau * plateau)
+
+void prevision_deplacement_pion(Pion * pion, Plateau * plateau,Joueur * joueur)
 {
-  int i,j,nb_en_fonction_pion;
+  int i,j,nb_en_fonction_pion,chois;
 
   CasePlateau t_possibilitees[8];
   int cpt = 0;
@@ -75,6 +75,7 @@ void prevision_deplacement_pion(Pion * pion, Plateau * plateau)
       {
           t_possibilitees[cpt].x = pion->x+j;
           t_possibilitees[cpt].y = pion->y+i;
+          t_possibilitees[cpt].type = 1;//deplacement normal
           if(plateau->t_casePlateau[pion->y+i][pion->x+j].p_pion != NULL)
           {
             printf("il y a un saut");
@@ -82,6 +83,7 @@ void prevision_deplacement_pion(Pion * pion, Plateau * plateau)
             printf("  x : %d",pion->x+(j*2));
             t_possibilitees[cpt].y = pion->y+(i*2);
             printf("  y : %d \n",pion->y+(i*2));
+            t_possibilitees[cpt].type = 2;//saut
           }
           cpt++;
           if(pion->type == 1)
@@ -93,24 +95,37 @@ void prevision_deplacement_pion(Pion * pion, Plateau * plateau)
               printf("  x : %d",pion->x+(j*2));
               t_possibilitees[cpt].y = pion->y+(i*2);
               printf("  y : %d \n",pion->y+(i*2));
+              t_possibilitees[cpt].type = 1;//deplacement normal
               cpt++;
             }
           }
       }
     }
   }
-  printf("vous pouvez déplacer ce pion en : \n");
   if(cpt == 0)
   {
     printf("pas de possibilitée de mouvement");
+    chois_pion(joueur,plateau);
   }
+    printf("vous pouvez déplacer ce pion en : \n");
   for(i=0;i<cpt;i++)
   {
-    printf(" x = %d  | y = %d \n",t_possibilitees[i].x,t_possibilitees[i].y);
+    if(t_possibilitees[i].type == 2)printf("saut |\n");
+    printf("%d : x = %d  | y = %d \n",i,t_possibilitees[i].x,t_possibilitees[i].y);
   }
+  printf("quel déplacement voulez vous faire ?");
+  scanf("%d",&chois);
+  deplacement_pion(plateau, pion, t_possibilitees[chois].x, t_possibilitees[chois].y);
 }
 
-
+void deplacement_pion(Plateau * plateau,Pion * pion,int x,int y)
+  {
+    plateau->t_casePlateau[y][x].p_pion = pion;
+    plateau->t_casePlateau[pion->y][pion->x].p_pion = NULL;
+    pion->x = x;
+    pion->y = y;
+    affichage_plateau(plateau);
+  }
 
 void affichage_pion_joueur(Joueur * joueur)
 {

@@ -19,6 +19,7 @@ void initialisation_Joueur(Joueur *j1,int a);
 void initialisation_pion ( Joueur *joueur,Plateau *plateau);
 void affichage_pion_joueur(Joueur * joueur);
 void chois_pion(Joueur * joueur, Plateau * plateau);
-void prevision_deplacement_pion(Pion * pion, Plateau * plateau);
+void prevision_deplacement_pion(Pion * pion, Plateau * plateau,Joueur * joueur);
+void deplacement_pion(Plateau * plateau,Pion * pion,int x,int y);
 
 #endif
