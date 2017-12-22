@@ -45,7 +45,6 @@ void afficher_case(Plateau * plateau, int x, int y)
     if(x == 0)
     printf("   ");
     // else
-    // printf("");
   }
   else
   {
@@ -72,7 +71,7 @@ void afficher_case(Plateau * plateau, int x, int y)
   void affichage_plateau(Plateau *plateau)
   {
     clear_console();
-    int i;
+    int i=0;
     printf("   | 0| 1| 2| 3| 4| 5| 6| 7| 8| 9");
     printf("|\n       -------------------------\n" );
     for(i=0;i<10;i++)

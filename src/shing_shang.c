@@ -10,6 +10,7 @@ void initialisation()
   initialisation_Joueur(&j2,2);
   initialisation_Plateau(&plateau);
   initialisation_pion(&j1,&plateau);
+  initialisation_pion(&j2,&plateau);
   affichage_plateau(&plateau);
   destruction_pion(&plateau, &j1.t_pion[0],&j1);
   affichage_plateau(&plateau);
