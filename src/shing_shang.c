@@ -9,6 +9,7 @@ void initialisation()
   Plateau plateau;
   initialisation_Plateau(&plateau);
   initialisation_pion(&j1,&plateau);
+  initialisation_pion(&j2,&plateau);
   affichage_plateau(&plateau);
   chois_pion(&j1,&plateau);
 }

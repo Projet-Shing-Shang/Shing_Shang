@@ -11,7 +11,7 @@ typedef struct Joueur Joueur;
 struct Joueur
 {
   int num_joueur;
-  Pion t_pion[12];
+  Pion t_pion[24];
   int couleur;
 };
 

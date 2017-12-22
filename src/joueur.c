@@ -15,20 +15,66 @@ void initialisation_Joueur(Joueur *j,int a)
 void initialisation_pion ( Joueur *joueur, Plateau *plateau)
 {
   Pion pion; // TYPE et variable
-  int y,x,cpt;
+  int i, j, cpt;
   cpt = 0;
-  for ( y = 3 ; y > 0 ; y--)
+  if (joueur->num_joueur == 1)
   {
-    for (x = y ; x > 0; x--)
+    for ( j = 3 ;j > 0 ; j--)   //en haut à gauche
     {
-      pion.type = x;
-      pion.joueur = joueur -> num_joueur;
-      pion.x = (y-x)+1;
-      pion.y = 3-y;
-      joueur -> t_pion[cpt] = pion;
-      plateau -> t_casePlateau[pion.y][pion.x].p_pion = &(joueur -> t_pion[cpt]);
-      cpt ++;
+      for (i = j ; i > 0; i--)
+      {
+        pion.type = i;
+        pion.joueur = joueur -> num_joueur;
+        pion.x = (j-i)+1;
+        pion.y = 3-j;
+        joueur -> t_pion[cpt] = pion;
+        plateau -> t_casePlateau[pion.y][pion.x].p_pion = &(joueur -> t_pion[cpt]);
+        cpt ++;
+      }
     }
+    /*for ( j = 0 ; j < 3 ; j++)  //en haut à droite
+      {
+      for (i = 8 ; i > 5; i--)
+       {
+        pion.type = j
+        pion.joueur = joueur -> num_joueur;
+        pion.x = (j-i)+4;
+        pion.y = 1+j;
+        joueur -> t_pion[cpt] = pion;
+        plateau -> t_casePlateau[pion.y][pion.x].p_pion = &(joueur -> t_pion[cpt]);
+        cpt ++;
+       }
+    }*/
+  }
+  else
+  {
+    cpt=0;
+    for ( j = 7 ; j < 10 ; j++)  //en bas à gauche
+      {
+      for (i = 1 ; i < 4; i++)
+        {
+          pion.type = i;
+          pion.joueur = joueur -> num_joueur;
+          pion.x = (j-i)-5;
+          pion.y = j;
+          joueur -> t_pion[cpt] = pion;
+          plateau -> t_casePlateau[pion.y][pion.x].p_pion = &(joueur -> t_pion[cpt]);
+          cpt ++;
+        }
+      }
+        for ( j = 7 ; j < 10 ; j++)  //en bas à droite
+        {
+         for (i = 8 ; i > 14 - j ; i--)
+         {
+           pion.type = (j+i)-14;
+           pion.joueur = joueur -> num_joueur;
+           pion.x = i;
+           pion.y = j;
+           joueur -> t_pion[cpt] = pion;
+           plateau -> t_casePlateau[pion.y][pion.x].p_pion = &(joueur -> t_pion[cpt]);
+           cpt ++;
+         }
+      }
   }
 }
 
