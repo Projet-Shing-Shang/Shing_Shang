@@ -12,7 +12,6 @@ struct Joueur
 {
   int num_joueur;
   Pion t_pion[24];
-  int couleur;
 };
 
 void initialisation_Joueur(Joueur *j1,int a);
@@ -21,7 +20,9 @@ void affichage_pion_joueur(Joueur * joueur);
 void chois_pion(Joueur * joueur,Joueur * joueurAdverce, Plateau * plateau,Pion * pion_precedant,int shingShang);
 void prevision_deplacement_pion(Pion * pion, Plateau * plateau,Joueur * joueur,Joueur * joueurAdverce, int saut);
 void deplacement_pion(Plateau * plateau,Pion * pion,int x,int y);
-void jouer(Joueur * joueur, Joueur * joueurAdverce, Plateau * plateau);
+int jouer(Joueur * joueur, Joueur * joueurAdverce, Plateau * plateau);
 void destruction_pion(Plateau * plateau, Pion * pion, Joueur * joueur);
+int gagner_contre(Joueur * joueur, Plateau * plateau);
+void sauvegarde(Plateau * plateau);
 
 #endif
