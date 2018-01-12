@@ -11,6 +11,7 @@ void initialisation()
   initialisation_Plateau(&plateau);
   do
   {
+    clear_console();
     vider_buffer();
     printf("voulez-vous commencer une partie (1) ou charger la partie (2)");
     scanf("%d",&chois);

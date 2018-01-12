@@ -198,7 +198,11 @@ void prevision_deplacement_pion(Pion * pion, Plateau * plateau,Joueur * joueur,J
   }
   deplacement_pion(plateau, pion, t_possibilitees[chois-1].x, t_possibilitees[chois-1].y); // on déplace le pion
   sauvegarde(plateau);
-  if(gagner_contre(joueurAdverce,plateau))jouer(joueurAdverce, joueur,plateau);
+  if(gagner_contre(joueurAdverce,plateau))
+  {
+    jouer(joueurAdverce, joueur,plateau);
+    return;
+  }
   if(t_possibilitees[chois-1].type == 2)//si c est un saut alier
   {
     printf("vous pouvez sauter une nouvelle fois \n");
